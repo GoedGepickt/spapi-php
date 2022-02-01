@@ -1,6 +1,8 @@
 <?php
 namespace DoubleBreak\Spapi;
 
+use GuzzleHttp\Psr7\Query;
+
 class Client {
 
   use HttpClientFactoryTrait;
@@ -55,12 +57,12 @@ class Client {
       if (isset($requestOptions['query'])) {
         $query = $requestOptions['query'];
         ksort($query);
-        $signOptions['query_string'] =  \GuzzleHttp\Psr7\build_query($query);
+        $signOptions['query_string'] =  Query::build($query);
       }
 
       if (isset($requestOptions['form_params'])) {
         ksort($requestOptions['form_params']);
-        $signOptions['payload'] = \GuzzleHttp\Psr7\build_query($requestOptions['form_params']);
+        $signOptions['payload'] = Query::build($requestOptions['form_params']);
       }
 
       if (isset($requestOptions['json'])) {

@@ -3,6 +3,7 @@
 namespace DoubleBreak\Spapi;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Query;
 
 class Credentials
 {
@@ -237,7 +238,7 @@ class Credentials
             'region' => 'us-east-1', //This should be hardcoded
             'host' => $host,
             'uri' => $uri,
-            'payload' => \GuzzleHttp\Psr7\build_query($requestOptions['form_params']),
+            'payload' => Query::build($requestOptions['form_params']),
             'method' => 'POST',
         ]);
 
